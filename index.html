@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jokivarren Tila ja Suoramyynti – Humppila</title>
+  <meta name="description" content="Jokivarren Tila kasvattaa lähipossua Tourunkulman pelloilla Humppilassa. Suoramyyntiä suoraan tilalta keväästä 2022.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@300;400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --soil:  #2a1a0a;
+      --soil2: #3c2810;
+      --hay:   #c09030;
+      --hay2:  #a07820;
+      --cream: #f5ede0;
+      --mist:  #e8ddc8;
+      --ink:   #1c1410;
+      --blush: #c87060;
+      --grain: #9a8050;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* ── LANG TOGGLE ─────────────────────────────────── */
+    .lang-sv, .lang-en { display: none; }
+    body.sv .lang-fi, body.en .lang-fi { display: none; }
+    body.sv .lang-sv { display: revert; }
+    body.en .lang-en { display: revert; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--soil);
+      border-bottom: 1px solid rgba(192,144,48,0.25);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 3px;
+      object-fit: cover;
+      border: 1px solid rgba(192,144,48,0.4);
+    }
+    .nav-wordmark {
+      font-family: 'Rokkitt', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--cream);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .nav-wordmark span {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--hay);
+      font-family: 'DM Sans', sans-serif;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(245,237,224,0.75);
+      text-decoration: none;
+      letter-spacing: 0.07em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--hay); }
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-left: 1.5rem;
+      border: 1px solid rgba(192,144,48,0.3);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px 9px;
+      font-size: 0.72rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: rgba(245,237,224,0.55);
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-switch button:hover { background: rgba(192,144,48,0.15); color: var(--hay); }
+    .lang-switch button.active { background: var(--hay); color: var(--soil); }
+    .lang-switch button + button { border-left: 1px solid rgba(192,144,48,0.3); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      margin-left: 1rem;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); transition: 0.3s; }
+    @media(max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--soil);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Rokkitt', serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .mobile-menu a:hover { color: var(--hay); }
+    .mobile-menu .mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      background: none; border: none; cursor: pointer;
+      color: var(--cream); font-size: 1.6rem; line-height: 1;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding-top: 64px;
+      background: var(--soil);
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-masthead {
+      flex: 0 0 auto;
+      padding: 3.5rem 2.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-pig-bg {
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.05;
+      width: 55%;
+      max-width: 520px;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow-line {
+      flex: 0 0 40px;
+      height: 1px;
+      background: var(--hay);
+    }
+    .hero-eyebrow span {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--hay);
+      font-weight: 400;
+    }
+    .hero-title {
+      font-family: 'Rokkitt', serif;
+      font-weight: 800;
+      font-size: clamp(3.2rem, 8vw, 7.5rem);
+      color: var(--cream);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      display: block;
+      font-style: normal;
+      color: var(--hay);
+    }
+    .hero-rule {
+      width: 80px;
+      height: 3px;
+      background: var(--hay);
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(245,237,224,0.78);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 2.25rem;
+    }
+    .btn-hay {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--hay);
+      color: var(--soil);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .btn-hay:hover { background: var(--hay2); }
+    .hero-photo {
+      flex: 1 1 auto;
+      min-height: 320px;
+      position: relative;
+      border-top: 2px solid rgba(192,144,48,0.3);
+    }
+    .hero-photo .ph {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #3c2810 0%, #1e1208 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-photo .ph-inner {
+      text-align: center;
+      color: rgba(192,144,48,0.3);
+    }
+    .hero-photo .ph-inner svg { width: 64px; height: 64px; margin-bottom: 0.75rem; }
+    .hero-photo .ph-inner p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .hero-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── STATS STRIP ─────────────────────────────────── */
+    .stats-strip {
+      background: var(--cream);
+      border-bottom: 1px solid rgba(42,26,10,0.1);
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 2.75rem 2rem;
+      text-align: center;
+      border-right: 1px solid rgba(42,26,10,0.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Rokkitt', serif;
+      font-weight: 800;
+      font-size: 2.8rem;
+      color: var(--soil);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(28,20,16,0.6);
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+    @media(max-width: 700px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-right: 1px solid rgba(42,26,10,0.1); }
+    }
+
+    /* ── SECTION WRAPPER ─────────────────────────────── */
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+    section { padding: 6rem 0; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--hay2);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 0 0 28px;
+      height: 1px;
+      background: var(--hay);
+    }
+    .section-title {
+      font-family: 'Rokkitt', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--soil);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .section-title.cream { color: var(--cream); }
+
+    /* ── STORY ──────────────────────────────────────── */
+    .story { background: var(--mist); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .story-text p {
+      color: rgba(28,20,16,0.8);
+      margin-bottom: 1.1rem;
+      font-size: 1.02rem;
+    }
+    .story-text p:last-child { margin-bottom: 0; }
+    .story-photo {
+      aspect-ratio: 4/3;
+      position: relative;
+      background: #c8b098;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .story-photo .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #c8b098, #a89070);
+    }
+    .story-photo .ph svg { opacity: 0.3; width: 72px; height: 72px; color: var(--soil); }
+    .story-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    @media(max-width: 800px) {
+      .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* ── GRAIN CYCLE (signature) ─────────────────────── */
+    .grain-cycle { background: var(--soil); overflow: hidden; }
+    .grain-cycle .section-label { color: var(--hay); }
+    .grain-cycle .section-label::after { background: var(--hay); }
+    .cycle-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .cycle-node {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(192,144,48,0.2);
+      border-radius: 4px;
+      padding: 2.25rem 1.75rem;
+      text-align: center;
+    }
+    .cycle-node-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      display: block;
+      line-height: 1;
+    }
+    .cycle-node-title {
+      font-family: 'Rokkitt', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--hay);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cycle-node-body {
+      font-size: 0.88rem;
+      color: rgba(245,237,224,0.65);
+      line-height: 1.5;
+    }
+    .cycle-grain-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+      margin-top: 0.75rem;
+    }
+    .cycle-tag {
+      background: rgba(192,144,48,0.15);
+      border: 1px solid rgba(192,144,48,0.3);
+      color: var(--hay);
+      font-size: 0.72rem;
+      padding: 3px 9px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+    .cycle-arrow {
+      color: var(--hay);
+      font-size: 1.75rem;
+      opacity: 0.5;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    @media(max-width: 800px) {
+      .cycle-flow {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .cycle-arrow { transform: rotate(90deg); font-size: 1.4rem; margin: -0.5rem 0; }
+    }
+    .cycle-note {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: rgba(245,237,224,0.4);
+      letter-spacing: 0.06em;
+      font-style: italic;
+    }
+
+    /* ── PRODUCTS ─────────────────────────────────────── */
+    .products { background: var(--cream); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+      border: 1px solid rgba(42,26,10,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .product-card {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(42,26,10,0.12);
+      position: relative;
+    }
+    .product-card:last-child { border-right: none; }
+    .product-num {
+      font-family: 'Rokkitt', serif;
+      font-weight: 800;
+      font-size: 4rem;
+      color: rgba(192,144,48,0.12);
+      line-height: 1;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+    .product-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .product-name {
+      font-family: 'Rokkitt', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--soil);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .product-body {
+      font-size: 0.9rem;
+      color: rgba(28,20,16,0.68);
+      line-height: 1.6;
+    }
+    .product-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--soil);
+      color: var(--hay);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    @media(max-width: 700px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .product-card { border-right: none; border-bottom: 1px solid rgba(42,26,10,0.12); }
+      .product-card:last-child { border-bottom: none; }
+    }
+
+    /* ── HOW TO ORDER ─────────────────────────────────── */
+    .order-section { background: var(--soil2); }
+    .order-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      margin-top: 3rem;
+    }
+    .order-step {
+      background: rgba(255,255,255,0.04);
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+    .order-step-num {
+      font-family: 'Rokkitt', serif;
+      font-weight: 800;
+      font-size: 3.5rem;
+      color: var(--hay);
+      opacity: 0.25;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+    .order-step-title {
+      font-family: 'Rokkitt', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .order-step-body {
+      font-size: 0.88rem;
+      color: rgba(245,237,224,0.6);
+      line-height: 1.6;
+    }
+    .order-step-arrow {
+      position: absolute;
+      top: 50%;
+      right: -16px;
+      transform: translateY(-50%);
+      color: var(--hay);
+      opacity: 0.4;
+      font-size: 1.25rem;
+      z-index: 1;
+    }
+    .order-step:last-child .order-step-arrow { display: none; }
+    @media(max-width: 700px) {
+      .order-steps { grid-template-columns: 1fr; }
+      .order-step-arrow { display: none; }
+    }
+    .order-cta-wrap {
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .btn-outline-hay {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border: 2px solid var(--hay);
+      color: var(--hay);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline-hay:hover { background: var(--hay); color: var(--soil); }
+
+    /* ── GALLERY STRIP ────────────────────────────────── */
+    .gallery-strip {
+      background: var(--ink);
+      padding: 0;
+    }
+    .gallery-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 280px;
+    }
+    .gallery-cell {
+      position: relative;
+      overflow: hidden;
+      border-right: 2px solid var(--ink);
+    }
+    .gallery-cell:last-child { border-right: none; }
+    .gallery-cell .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-cell:nth-child(1) .ph { background: #3a2614; }
+    .gallery-cell:nth-child(2) .ph { background: #2a2010; }
+    .gallery-cell:nth-child(3) .ph { background: #361e08; }
+    .gallery-cell:nth-child(4) .ph { background: #2c180a; }
+    .gallery-cell .ph svg { width: 32px; height: 32px; color: rgba(192,144,48,0.25); }
+    .gallery-cell img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    @media(max-width: 700px) {
+      .gallery-strip-grid { grid-template-columns: repeat(2, 1fr); height: 360px; }
+      .gallery-cell:nth-child(2) { border-right: none; }
+    }
+
+    /* ── CONTACT ──────────────────────────────────────── */
+    .contact { background: var(--mist); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-info dt {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--hay2);
+      margin-top: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .contact-info dd {
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .contact-info dd a {
+      color: var(--soil);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .contact-info dd a:hover { color: var(--hay2); }
+    .contact-fb-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      padding: 0.9rem 1.75rem;
+      background: var(--soil);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .contact-fb-btn:hover { background: var(--soil2); }
+    .contact-map-placeholder {
+      aspect-ratio: 4/3;
+      background: var(--cream);
+      border: 1px solid rgba(42,26,10,0.12);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: rgba(28,20,16,0.4);
+      font-size: 0.88rem;
+      text-align: center;
+      padding: 2rem;
+    }
+    .contact-map-placeholder svg { width: 40px; height: 40px; opacity: 0.3; }
+    @media(max-width: 800px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: 'Rokkitt', serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: rgba(245,237,224,0.5);
+      letter-spacing: 0.06em;
+    }
+    .footer-demo {
+      font-size: 0.75rem;
+      color: rgba(245,237,224,0.3);
+      letter-spacing: 0.05em;
+    }
+    .footer-demo a { color: rgba(192,144,48,0.5); text-decoration: none; }
+    .footer-demo a:hover { color: var(--hay); }
+
+    /* ── REVEAL ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Sulje valikko">✕</button>
+  <a href="#meista" onclick="closeMobileMenu()"><span class="lang-fi">Meistä</span><span class="lang-sv">Om oss</span><span class="lang-en">About</span></a>
+  <a href="#tuotteet" onclick="closeMobileMenu()"><span class="lang-fi">Tuotteet</span><span class="lang-sv">Produkter</span><span class="lang-en">Products</span></a>
+  <a href="#tilaa" onclick="closeMobileMenu()"><span class="lang-fi">Tilaa</span><span class="lang-sv">Beställ</span><span class="lang-en">Order</span></a>
+  <a href="#yhteystiedot" onclick="closeMobileMenu()"><span class="lang-fi">Yhteystiedot</span><span class="lang-sv">Kontakt</span><span class="lang-en">Contact</span></a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <img src="images/logo.jpg" alt="Jokivarren Tila logo" class="nav-logo" onerror="this.style.display='none'">
+    <div class="nav-wordmark">
+      Jokivarren Tila
+      <span>Suoramyynti · Humppila</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#meista"><span class="lang-fi">Meistä</span><span class="lang-sv">Om oss</span><span class="lang-en">About</span></a></li>
+      <li><a href="#tuotteet"><span class="lang-fi">Tuotteet</span><span class="lang-sv">Produkter</span><span class="lang-en">Products</span></a></li>
+      <li><a href="#tilaa"><span class="lang-fi">Tilaa</span><span class="lang-sv">Beställ</span><span class="lang-en">Order</span></a></li>
+      <li><a href="#yhteystiedot"><span class="lang-fi">Yhteystiedot</span><span class="lang-sv">Kontakt</span><span class="lang-en">Contact</span></a></li>
+    </ul>
+    <div class="lang-switch">
+      <button onclick="setLang('fi')" id="btn-fi" class="active">FI</button>
+      <button onclick="setLang('sv')" id="btn-sv">SV</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Avaa valikko">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-masthead">
+    <!-- Pig silhouette watermark -->
+    <svg class="hero-pig-bg" viewBox="0 0 200 140" fill="currentColor" color="var(--hay)" aria-hidden="true">
+      <ellipse cx="95" cy="80" rx="75" ry="50"/>
+      <circle cx="30" cy="68" r="22"/>
+      <ellipse cx="28" cy="60" rx="10" ry="8"/>
+      <circle cx="24" cy="58" r="3"/>
+      <circle cx="32" cy="56" r="3"/>
+      <rect x="40" y="120" width="14" height="22" rx="5"/>
+      <rect x="65" y="122" width="14" height="20" rx="5"/>
+      <rect x="115" y="122" width="14" height="20" rx="5"/>
+      <rect x="140" y="120" width="14" height="22" rx="5"/>
+      <path d="M170 68 Q185 55 178 75 Q188 72 182 82 Q175 90 168 80Z"/>
+    </svg>
+
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="lang-fi">Tourunkulma, Humppila — Kanta-Häme</span>
+      <span class="lang-sv">Tourunkulma, Humppila — Kanta-Häme</span>
+      <span class="lang-en">Tourunkulma, Humppila — Kanta-Häme</span>
+    </div>
+
+    <h1 class="hero-title">
+      Jokivarren<br>
+      <em>Tila</em>
+    </h1>
+
+    <div class="hero-rule"></div>
+
+    <p class="hero-sub lang-fi">Lähipossua Hämeen sydämestä. Oma vilja, omat pellot, suoraan sinulle.</p>
+    <p class="hero-sub lang-sv">Lokalt fläsk från Hämeens hjärta. Eget spannmål, egna fält, direkt till dig.</p>
+    <p class="hero-sub lang-en">Local pork from the heart of Häme. Our own grain, our own fields, straight to you.</p>
+
+    <a href="https://www.facebook.com/jokivarrentilajasuoramyynti" target="_blank" rel="noopener" class="btn-hay">
+      <span class="lang-fi">Tilaa Facebookissa →</span>
+      <span class="lang-sv">Beställ på Facebook →</span>
+      <span class="lang-en">Order on Facebook →</span>
+    </a>
+  </div>
+
+  <div class="hero-photo">
+    <div class="ph">
+      <div class="ph-inner">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="8" y="20" width="48" height="32" rx="3"/>
+          <circle cx="32" cy="36" r="10"/>
+          <circle cx="48" cy="26" r="4"/>
+        </svg>
+        <p class="lang-fi">Valokuva tulossa</p>
+        <p class="lang-sv">Foto kommer</p>
+        <p class="lang-en">Photo coming</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-num">1970</span>
+      <span class="stat-label lang-fi">-luvulta sikojen kasvatus Humppilassa</span>
+      <span class="stat-label lang-sv">-talet grisuppfödning i Humppila</span>
+      <span class="stat-label lang-en">s pig farming tradition in Humppila</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">2018</span>
+      <span class="stat-label lang-fi">Hannu ja Sini Torvinen jatkoivat perintöä</span>
+      <span class="stat-label lang-sv">Hannu och Sini Torvinen tog över gården</span>
+      <span class="stat-label lang-en">Hannu and Sini Torvinen took over the farm</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">2022</span>
+      <span class="stat-label lang-fi">suoramyynti käynnistyi keväällä</span>
+      <span class="stat-label lang-sv">direktförsäljning startade på våren</span>
+      <span class="stat-label lang-en">direct sales launched in spring</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">5</span>
+      <span class="stat-label lang-fi">viljalajia pellolla — rehu suoraan omasta maasta</span>
+      <span class="stat-label lang-sv">spannmålssorter på fältet — foder från eget land</span>
+      <span class="stat-label lang-en">grain crops grown on the farm for pig feed</span>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="meista">
+  <div class="section-wrap">
+    <div class="story-grid">
+      <div class="story-text">
+        <p class="section-label lang-fi">Meidän tarina</p>
+        <p class="section-label lang-sv">Vår historia</p>
+        <p class="section-label lang-en">Our story</p>
+
+        <h2 class="section-title lang-fi">Peltoja, porsaita ja paikallisuutta</h2>
+        <h2 class="section-title lang-sv">Fält, grisar och lokalt engagemang</h2>
+        <h2 class="section-title lang-en">Fields, pigs and local pride</h2>
+
+        <p class="lang-fi reveal">Jokivarren tilalla on kasvatettu sikoja Tourunkulman pelloilla jo 1970-luvulta lähtien. Tilan piha on täyttynyt naurusta, töistä ja elämästä sukupolvesta toiseen — ja niin se jatkuu.</p>
+        <p class="lang-sv reveal">På Jokivarren tila har grisar föds upp på Tourunkulmas fält sedan 1970-talet. Gårdens gård har fyllts med skratt, arbete och liv från generation till generation.</p>
+        <p class="lang-en reveal">Jokivarren tila has raised pigs on the fields of Tourunkulma since the 1970s. The farmyard has been filled with laughter, work and life from generation to generation.</p>
+
+        <p class="lang-fi reveal">Vuonna 2018 Hannu ja Sini Torvinen jatkoivat perintöä ja ottivat tilan ohjat käsiinsä. He halusivat viedä asioita askel eteenpäin: keväällä 2022 he avasivat suoramyynnin, jotta kaikki Humppilassa ja lähikunnissa voisivat ostaa aitoa lähipossua suoraan tilalta.</p>
+        <p class="lang-sv reveal">2018 tog Hannu och Sini Torvinen över arvet och tog ledningen för gården. De ville ta saker ett steg vidare: våren 2022 öppnade de direktförsäljning så att alla i Humppila och grannkommunerna kan köpa äkta lokalt fläsk direkt från gården.</p>
+        <p class="lang-en reveal">In 2018, Hannu and Sini Torvinen continued the legacy and took the reins of the farm. They wanted to take things a step further: in spring 2022 they opened direct sales so everyone in Humppila and nearby communities could buy real local pork straight from the farm.</p>
+
+        <p class="lang-fi reveal">Tilan pellot kasvattavat ohran, vehnän, kauran, herneen ja härkäpavun — lähes kaiken minkä siat syövät tulee omasta maasta. Se on suljettu kierto, jossa maasta tulee ruoka ja ruoasta taas uutta elämää.</p>
+        <p class="lang-sv reveal">Gårdens fält odlar korn, vete, havre, ärtor och bondbönor — nästan allt grisarna äter kommer från eget land. Det är ett slutet kretslopp där jord blir mat och mat blir nytt liv.</p>
+        <p class="lang-en reveal">The farm's fields grow barley, wheat, oats, peas and broad beans — almost everything the pigs eat comes from their own land. It is a closed loop where soil becomes food and food becomes new life again.</p>
+      </div>
+
+      <div class="story-photo reveal">
+        <div class="ph">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <ellipse cx="32" cy="36" rx="18" ry="12"/>
+            <circle cx="14" cy="32" r="7"/>
+            <ellipse cx="12" cy="30" rx="4" ry="3"/>
+            <rect x="22" y="44" width="4" height="6" rx="2"/>
+            <rect x="30" y="44" width="4" height="6" rx="2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAIN CYCLE SIGNATURE -->
+<section class="grain-cycle">
+  <div class="section-wrap">
+    <p class="section-label">
+      <span class="lang-fi">Pellon kiertokulku</span>
+      <span class="lang-sv">Åkerns kretslopp</span>
+      <span class="lang-en">The field cycle</span>
+    </p>
+    <h2 class="section-title cream lang-fi reveal">Maasta pöytään — yhden tilan voimin</h2>
+    <h2 class="section-title cream lang-sv reveal">Från jord till bord — med en gårds kraft</h2>
+    <h2 class="section-title cream lang-en reveal">From soil to table — one farm's effort</h2>
+
+    <div class="cycle-flow">
+      <div class="cycle-node reveal">
+        <span class="cycle-node-icon">🌾</span>
+        <div class="cycle-node-title lang-fi">Pelto</div>
+        <div class="cycle-node-title lang-sv">Åkern</div>
+        <div class="cycle-node-title lang-en">The field</div>
+        <div class="cycle-node-body lang-fi">Tilan omat pellot Tourunkulman mailla tuottavat rehuvilja vuodesta toiseen.</div>
+        <div class="cycle-node-body lang-sv">Gårdens egna fält på Tourunkulmas mark producerar foderspannmål år efter år.</div>
+        <div class="cycle-node-body lang-en">The farm's own fields on Tourunkulma's land produce feed grain year after year.</div>
+        <div class="cycle-grain-tags">
+          <span class="cycle-tag lang-fi">Ohra</span>
+          <span class="cycle-tag lang-fi">Vehnä</span>
+          <span class="cycle-tag lang-fi">Kaura</span>
+          <span class="cycle-tag lang-fi">Herne</span>
+          <span class="cycle-tag lang-fi">Härkäpapu</span>
+          <span class="cycle-tag lang-sv">Korn</span>
+          <span class="cycle-tag lang-sv">Vete</span>
+          <span class="cycle-tag lang-sv">Havre</span>
+          <span class="cycle-tag lang-sv">Ärtor</span>
+          <span class="cycle-tag lang-sv">Bondbönor</span>
+          <span class="cycle-tag lang-en">Barley</span>
+          <span class="cycle-tag lang-en">Wheat</span>
+          <span class="cycle-tag lang-en">Oats</span>
+          <span class="cycle-tag lang-en">Peas</span>
+          <span class="cycle-tag lang-en">Broad beans</span>
+        </div>
+      </div>
+
+      <div class="cycle-arrow" aria-hidden="true">→</div>
+
+      <div class="cycle-node reveal">
+        <span class="cycle-node-icon">🐷</span>
+        <div class="cycle-node-title lang-fi">Navetta</div>
+        <div class="cycle-node-title lang-sv">Ladugården</div>
+        <div class="cycle-node-title lang-en">The barn</div>
+        <div class="cycle-node-body lang-fi">Lihasiat kasvavat rauhassa omalla rehulla. Ei turhia välikäsiä, ei pitkiä kuljetusmatkoja.</div>
+        <div class="cycle-node-body lang-sv">Köttgrisarna växer lugnt på eget foder. Inga onödiga mellanhänder, inga långa transporter.</div>
+        <div class="cycle-node-body lang-en">The meat pigs grow calmly on home-grown feed. No unnecessary middlemen, no long transport distances.</div>
+      </div>
+
+      <div class="cycle-arrow" aria-hidden="true">→</div>
+
+      <div class="cycle-node reveal">
+        <span class="cycle-node-icon">🍽️</span>
+        <div class="cycle-node-title lang-fi">Sinulle</div>
+        <div class="cycle-node-title lang-sv">Till dig</div>
+        <div class="cycle-node-title lang-en">To you</div>
+        <div class="cycle-node-body lang-fi">Tuore lähipossu suoraan Jokivarren tilalta — tiedät mistä ruokasi tulee.</div>
+        <div class="cycle-node-body lang-sv">Färskt lokalt fläsk direkt från Jokivarren tila — du vet varifrån din mat kommer.</div>
+        <div class="cycle-node-body lang-en">Fresh local pork straight from Jokivarren tila — you know exactly where your food comes from.</div>
+      </div>
+    </div>
+
+    <p class="cycle-note lang-fi reveal">Suljettu kierto — omat pellot ruokkivat omat siat, omat siat ruokkivat sinut.</p>
+    <p class="cycle-note lang-sv reveal">Slutet kretslopp — egna fält matar egna grisar, egna grisar matar dig.</p>
+    <p class="cycle-note lang-en reveal">Closed loop — our own fields feed our own pigs, our own pigs feed you.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="tuotteet">
+  <div class="section-wrap">
+    <p class="section-label lang-fi">Tuotteet</p>
+    <p class="section-label lang-sv">Produkter</p>
+    <p class="section-label lang-en">Products</p>
+
+    <h2 class="section-title lang-fi reveal">Humppilalainen lähipossu</h2>
+    <h2 class="section-title lang-sv reveal">Lokalt Humppila-fläsk</h2>
+    <h2 class="section-title lang-en reveal">Local Humppila pork</h2>
+
+    <p class="lang-fi reveal" style="margin-bottom:0.5rem;color:rgba(28,20,16,0.65);font-size:0.95rem;">Saatavuus vaihtelee — kysy ajankohtaisesta tilanteesta suoraan Facebookissa.</p>
+    <p class="lang-sv reveal" style="margin-bottom:0.5rem;color:rgba(28,20,16,0.65);font-size:0.95rem;">Tillgängligheten varierar — fråga om aktuell situation direkt på Facebook.</p>
+    <p class="lang-en reveal" style="margin-bottom:0.5rem;color:rgba(28,20,16,0.65);font-size:0.95rem;">Availability varies — ask about current stock directly on Facebook.</p>
+
+    <div class="products-grid reveal">
+      <div class="product-card">
+        <span class="product-num">01</span>
+        <span class="product-icon">🐷</span>
+        <div class="product-name lang-fi">Kokonainen possu</div>
+        <div class="product-name lang-sv">Hel gris</div>
+        <div class="product-name lang-en">Whole pig</div>
+        <p class="product-body lang-fi">Täysi possu jaettavaksi perheen tai yhteisön kesken. Ihanteellinen varastoon hankkimiseen — pakastin täyteen laadukkaalla lähilihalla.</p>
+        <p class="product-body lang-sv">Hel gris att dela med familj eller gemenskap. Idealiskt för att fylla frysen med kvalitativt lokalt kött.</p>
+        <p class="product-body lang-en">A whole pig to share with your family or community. Ideal for stocking the freezer with quality local meat.</p>
+        <span class="product-tag lang-fi">Tilauksen mukaan</span>
+        <span class="product-tag lang-sv">Enligt beställning</span>
+        <span class="product-tag lang-en">By order</span>
+      </div>
+
+      <div class="product-card">
+        <span class="product-num">02</span>
+        <span class="product-icon">✂️</span>
+        <div class="product-name lang-fi">Puolikas possu</div>
+        <div class="product-name lang-sv">Halv gris</div>
+        <div class="product-name lang-en">Half pig</div>
+        <p class="product-body lang-fi">Sopiva määrä tavalliselle kotitaloudelle. Saat monipuolisen kokonaisuuden lihaa — filettä, jauhelihaa, kyljyksiä ja paljon muuta.</p>
+        <p class="product-body lang-sv">En lämplig mängd för ett vanligt hushåll. Du får ett mångsidigt sortiment av kött — filé, malet kött, kotletter och mycket mer.</p>
+        <p class="product-body lang-en">The right amount for a regular household. You get a varied selection of meat — fillet, mince, chops and much more.</p>
+        <span class="product-tag lang-fi">Suosituin valinta</span>
+        <span class="product-tag lang-sv">Populäraste valet</span>
+        <span class="product-tag lang-en">Most popular</span>
+      </div>
+
+      <div class="product-card">
+        <span class="product-num">03</span>
+        <span class="product-icon">🥩</span>
+        <div class="product-name lang-fi">Osat ja jauheliha</div>
+        <div class="product-name lang-sv">Delar och malet kött</div>
+        <div class="product-name lang-en">Cuts and mince</div>
+        <p class="product-body lang-fi">Yksittäisiä paloja tai jauhelihaa sopimuksen mukaan. Kysy ajankohtaisesta saatavuudesta — toiveet huomioidaan mahdollisuuksien mukaan.</p>
+        <p class="product-body lang-sv">Enskilda styckdelar eller malet kött enligt avtal. Fråga om aktuell tillgänglighet — önskemål beaktas efter möjlighet.</p>
+        <p class="product-body lang-en">Individual cuts or mince by agreement. Ask about current availability — requests are accommodated where possible.</p>
+        <span class="product-tag lang-fi">Kysy saatavuus</span>
+        <span class="product-tag lang-sv">Fråga om tillgång</span>
+        <span class="product-tag lang-en">Ask for availability</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section class="order-section" id="tilaa">
+  <div class="section-wrap">
+    <p class="section-label" style="color:var(--hay);">
+      <span class="lang-fi">Näin tilaat</span>
+      <span class="lang-sv">Så här beställer du</span>
+      <span class="lang-en">How to order</span>
+    </p>
+    <h2 class="section-title cream lang-fi reveal">Kolme askelta lähilihaan</h2>
+    <h2 class="section-title cream lang-sv reveal">Tre steg till lokalt kött</h2>
+    <h2 class="section-title cream lang-en reveal">Three steps to local meat</h2>
+
+    <div class="order-steps">
+      <div class="order-step reveal">
+        <div class="order-step-num">01</div>
+        <div class="order-step-title lang-fi">Ota yhteyttä</div>
+        <div class="order-step-title lang-sv">Ta kontakt</div>
+        <div class="order-step-title lang-en">Get in touch</div>
+        <div class="order-step-body lang-fi">Lähetä viesti Facebookissa tai soita. Kerro tarpeet ja toiveet — Hannu tai Sini vastaa henkilökohtaisesti.</div>
+        <div class="order-step-body lang-sv">Skicka ett meddelande på Facebook eller ring. Berätta om dina behov — Hannu eller Sini svarar personligen.</div>
+        <div class="order-step-body lang-en">Send a message on Facebook or call. Share your needs and wishes — Hannu or Sini will reply personally.</div>
+        <span class="order-step-arrow" aria-hidden="true">→</span>
+      </div>
+      <div class="order-step reveal">
+        <div class="order-step-num">02</div>
+        <div class="order-step-title lang-fi">Sovitaan toimitus</div>
+        <div class="order-step-title lang-sv">Avtala leverans</div>
+        <div class="order-step-title lang-en">Arrange delivery</div>
+        <div class="order-step-body lang-fi">Sovitaan noutoaika suoraan tilalta Humppilasta tai mahdollisesta toimituksesta lähialueelle. Maksu tilauksen yhteydessä.</div>
+        <div class="order-step-body lang-sv">Vi avtalar om hämtningstid direkt från gården i Humppila eller eventuell leverans till närtrakten. Betalning vid beställning.</div>
+        <div class="order-step-body lang-en">We arrange a pick-up time directly from the farm in Humppila, or possible delivery to the local area. Payment at time of order.</div>
+        <span class="order-step-arrow" aria-hidden="true">→</span>
+      </div>
+      <div class="order-step reveal">
+        <div class="order-step-num">03</div>
+        <div class="order-step-title lang-fi">Nauti lähiruuasta</div>
+        <div class="order-step-title lang-sv">Njut av lokalmat</div>
+        <div class="order-step-title lang-en">Enjoy local food</div>
+        <div class="order-step-body lang-fi">Tuore humppilalainen possu on pöydässäsi. Tiedät tasan, mistä se tulee — ja kuka se on kasvattanut.</div>
+        <div class="order-step-body lang-sv">Färskt Humppila-fläsk är på ditt bord. Du vet exakt varifrån det kommer — och vem som odlat det.</div>
+        <div class="order-step-body lang-en">Fresh Humppila pork is on your table. You know exactly where it comes from — and who raised it.</div>
+      </div>
+    </div>
+
+    <div class="order-cta-wrap reveal">
+      <a href="https://www.facebook.com/jokivarrentilajasuoramyynti" target="_blank" rel="noopener" class="btn-outline-hay">
+        <span class="lang-fi">Siirry Facebook-sivulle →</span>
+        <span class="lang-sv">Gå till Facebook-sidan →</span>
+        <span class="lang-en">Go to Facebook page →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY STRIP -->
+<div class="gallery-strip">
+  <div class="gallery-strip-grid">
+    <div class="gallery-cell"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="gallery-cell"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="gallery-cell"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="gallery-cell"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="yhteystiedot">
+  <div class="section-wrap">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label lang-fi">Yhteystiedot</p>
+        <p class="section-label lang-sv">Kontakt</p>
+        <p class="section-label lang-en">Contact</p>
+
+        <h2 class="section-title lang-fi reveal">Ota yhteyttä</h2>
+        <h2 class="section-title lang-sv reveal">Ta kontakt</h2>
+        <h2 class="section-title lang-en reveal">Get in touch</h2>
+
+        <dl class="contact-info reveal">
+          <dt class="lang-fi">Tila</dt>
+          <dt class="lang-sv">Gård</dt>
+          <dt class="lang-en">Farm</dt>
+          <dd class="lang-fi">Jokivarren Tila ja Suoramyynti</dd>
+          <dd class="lang-sv">Jokivarren Tila ja Suoramyynti</dd>
+          <dd class="lang-en">Jokivarren Tila ja Suoramyynti</dd>
+
+          <dt class="lang-fi">Isännät</dt>
+          <dt class="lang-sv">Ägare</dt>
+          <dt class="lang-en">Owners</dt>
+          <dd>Hannu ja Sini Torvinen</dd>
+
+          <dt class="lang-fi">Osoite</dt>
+          <dt class="lang-sv">Adress</dt>
+          <dt class="lang-en">Address</dt>
+          <dd>Jokihaarantie 99<br>31640 Humppila</dd>
+
+          <dt class="lang-fi">Yhteydenotto</dt>
+          <dt class="lang-sv">Kontakt</dt>
+          <dt class="lang-en">Enquiries</dt>
+          <dd class="lang-fi">Paras tapa ottaa yhteyttä on Facebook Messenger. Vastataan nopeasti.</dd>
+          <dd class="lang-sv">Bästa sättet att ta kontakt är via Facebook Messenger. Vi svarar snabbt.</dd>
+          <dd class="lang-en">The best way to get in touch is via Facebook Messenger. We respond quickly.</dd>
+        </dl>
+
+        <a href="https://www.facebook.com/jokivarrentilajasuoramyynti" target="_blank" rel="noopener" class="contact-fb-btn reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          <span class="lang-fi">Jokivarren Tila Facebookissa</span>
+          <span class="lang-sv">Jokivarren Tila på Facebook</span>
+          <span class="lang-en">Jokivarren Tila on Facebook</span>
+        </a>
+      </div>
+
+      <div class="contact-map-placeholder reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <p style="font-family:'Rokkitt',serif;font-weight:700;font-size:1.1rem;color:var(--soil);">Tourunkulma, Humppila</p>
+        <p class="lang-fi" style="font-size:0.82rem;">Jokihaarantie 99, 31640 Humppila<br>Kanta-Häme</p>
+        <p class="lang-sv" style="font-size:0.82rem;">Jokihaarantie 99, 31640 Humppila<br>Kanta-Häme</p>
+        <p class="lang-en" style="font-size:0.82rem;">Jokihaarantie 99, 31640 Humppila<br>Kanta-Häme</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Jokivarren Tila ja Suoramyynti</div>
+  <div class="footer-demo">
+    Demo — <a href="https://antonjalonen.fi" target="_blank" rel="noopener">Suunniteltu Anton Jalonen</a> — Ei virallinen sivusto
+  </div>
+</footer>
+
+<script>
+  // Lang switch
+  function setLang(l) {
+    document.body.className = l === 'fi' ? '' : l;
+    ['fi','sv','en'].forEach(code => {
+      const btn = document.getElementById('btn-' + code);
+      if (btn) btn.classList.toggle('active', code === l);
+    });
+    document.documentElement.lang = l;
+    localStorage.setItem('jt-lang', l);
+  }
+  (function() {
+    const saved = localStorage.getItem('jt-lang') || 'fi';
+    if (saved !== 'fi') setLang(saved);
+    else {
+      document.getElementById('btn-fi').classList.add('active');
+    }
+  })();
+
+  // Mobile menu
+  const mobileMenu = document.getElementById('mobileMenu');
+  document.getElementById('hamburger').addEventListener('click', function() {
+    mobileMenu.classList.add('open');
+  });
+  document.getElementById('mobileClose').addEventListener('click', closeMobileMenu);
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
